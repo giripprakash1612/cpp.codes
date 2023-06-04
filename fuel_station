@@ -1,0 +1,143 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+
+class Fuel_station
+{
+    private:
+        float petrol,diesel,amount,p,d,a,total_pet,total_die;
+        char z;
+    public:
+        void get()
+        {
+            cout<<"enter the  amount of petrol in station:";
+            cin>>petrol;
+            cout<<"enter the amount of diesel in station:";
+            cin>>diesel;
+            cout<<"enter the initial amount in station:";
+            cin>>amount;
+            cout<<"enter the max capacity of petrol:";
+            cin>>total_pet;
+            cout<<"enetr the max capacity of diesel:";
+            cin>>total_die;
+        }
+        void pet()
+        {
+            cout<<"enter the amount of petrol needed:";
+            cin>>p;
+            if(p<petrol)
+            {
+                cout<<"petrol available"<<endl;
+                a=p*100;
+                cout<<"the amount to be paid is:"<<a<<endl;
+                cout<<"petrol transfering.....completed transfer";
+                petrol=petrol-p;
+                amount=a+amount;
+            }
+            else
+                cout<<"insufficient petrol!!!"<<endl;
+        }
+        
+         void die()
+        {
+            cout<<"enter the amount of diesel needed:";
+            cin>>d;
+            if(d<diesel)
+            {
+                cout<<"diesel available"<<endl;
+                a=d*95;
+                cout<<"the amount to be paid is:"<<a<<endl;
+                cout<<"diesel transfering.....completed transfer";
+                diesel=diesel-d;
+                amount=a+amount;
+            }
+            else
+                cout<<"insufficient diesel!!!"<<endl;
+        }
+        void fuel()
+        {
+            cout<<"enter p for petrol and d for diesel"<<endl;
+            cout<<"enter the type of fuel to be filled:"<<endl;
+            cin>>z;
+            if(z=='p')
+            {
+                cout<<"enter the amount of petrol needed by station:";
+                cin>>p;
+                if(p<(total_pet-petrol))
+                {
+                    cout<<"transaction posible!!!"<<endl;
+                    a=p*100;
+                    cout<<"the amount to be paid is:"<<a<<endl;
+                    if(a<amount)
+                    {
+                        cout<<"tranfering petrol...amount paid"<<endl;
+                        petrol=petrol+p;
+                        amount=amount-a;
+                    }
+                    else 
+                        cout<<"insufiecient funds"<<endl;
+                }
+                else
+                    cout<<"lack of space"<<endl;
+            }
+            if(z=='d')
+            {
+                cout<<"enter the amount of diesel needed by station:";
+                cin>>d;
+                if(d<(total_die-diesel))
+                {
+                    cout<<"transaction posible!!!"<<endl;
+                    a=p*95;
+                    cout<<"the amount to be paid is:"<<a<<endl;
+                    if(a<amount)
+                    {
+                        cout<<"tranfering petrol...amount paid"<<endl;
+                        diesel=diesel+d;
+                        amount=amount-a;
+                    }
+                    else 
+                        cout<<"insufiecient funds"<<endl;
+                }
+                else
+                    cout<<"lack of space"<<endl;
+            }
+        }
+        void display()
+        {
+            cout<<"the remaining petrol(liter) is:"<<petrol<<endl;
+            cout<<"the remaining diesel(liter) is:"<<diesel<<endl;
+            cout<<"the remaining amount is(ruppess):"<<amount<<endl;
+        }
+};       
+
+int main() 
+{
+    Fuel_station f;
+    char w;
+    cout<<"welcome to the station!!!"<<endl;
+    cout<<"enter o to start and proceed to next transaction"<<endl;
+    cout<<"enter p to fill petrol"<<endl;
+    cout<<"enter d to fill diesel"<<endl;
+    cout<<"enter f to fill fuel to station"<<endl;
+    cout<<"enter x to stop transaction in the station"<<endl;
+    cout<<"enter your choice to start or terminate ie (o/x):";
+    cin>>w;
+    f.get();
+    while(w=='o')
+    {
+        cout<<"enter the type of vehicle:";
+        cin>>w;
+        if(w=='p')
+        f.pet();
+        if(w=='d')
+        f.die();
+        if(w=='f')
+        f.fuel();
+        cout<<"enter your choice to start or terminate ie (o/x):";
+        cin>>w;
+    }
+    cout<<"the end of transactions!!"<<endl;
+    cout<<"displaying the remaining values"<<endl;
+    f.display();
+    return 0;
+}
