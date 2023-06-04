@@ -1,0 +1,75 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+
+class Bank
+{
+    public:
+        int account_number;
+        float balance_amount;
+    
+        void get_data()
+        {
+            cout<<"enter acc.no:";
+            cin>>account_number;
+            cout<<"enter acc.balance:";
+            cin>>balance_amount;
+        }
+        
+        void display()
+        {
+            cout<<endl<<"ACCOUNT NUMBER:"<<account_number<<endl;
+            cout<<"ACCOUNT BALANCE:"<<balance_amount<<endl;
+        }
+};
+
+
+class User:public Bank
+{
+    private:
+        float a;
+    public:
+        void credit()
+        {
+            cout<<"enter the amount to be creditted:";
+            cin>>a;
+            cout<<"amount creditted!!!"<<endl;
+            balance_amount=balance_amount+a;
+        }
+        void debit()
+        {
+            cout<<"enter the amount to be debitted:";
+            cin>>a;
+            if(a<balance_amount)
+            {
+            cout<<"amount debitted!!!"<<endl;
+            balance_amount=balance_amount-a;
+            }
+            else
+                cout<<"insuficient funds"<<endl;
+        }
+        
+};
+
+int main() 
+{
+    User u[50];
+    int n,i;
+    char x;
+    cout<<"enter the total number of users:";
+    cin>>n;
+    for(i=0;i<n-1;++i)
+    {
+        u[i].get_data();
+        cout<<"enter c for credit and d for debit";
+        cin>>x;
+        if(x=='c')
+        u[i].credit();
+        if(x=='d')
+        u[i].debit();
+    }
+    
+    for(i=0;i<n-1;++i)
+    u[i].display();
+    return 0;
+}
