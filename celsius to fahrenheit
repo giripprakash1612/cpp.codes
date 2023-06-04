@@ -1,0 +1,67 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+
+class Celsius
+{
+    private:
+        float c;
+    public:
+        Celsius():c(0.0){}
+        Celsius(float q):c(q){}
+        void get()
+        {
+            cout<<"enter c value:";
+            cin>>c;
+        }
+        float con()
+        {
+            cout<<c;
+            return c;
+        }
+        Celsius operator+(Celsius w)
+        {
+            float e;
+            e=c+w.c;
+            return(Celsius(e));
+        }
+        void show()
+        {
+            cout<<"the temp is "<<c<<" celsius"<<endl;
+            
+        }
+};
+
+class Fahrenheit
+{
+    private:
+        float r;
+    public:
+        Fahrenheit(float s):r(s){}
+        Fahrenheit(Celsius d)
+        {
+            r= (1.8*d.con())+32;
+        }
+        void show()
+        {
+            cout<<"the temp is"<<r<<" fahrenhiet"<<endl;
+            
+        }
+};
+
+int main() 
+{   float y,u;
+    cout<<"enter y and u values:";
+    cin>>y;
+    cin>>u;
+    Celsius c1=y;
+    Celsius c2=u;
+    Celsius c3;
+    c3=c1+c2;
+    c3.show();
+    Fahrenheit f=c3;
+    f.show();
+    
+
+    return 0;
+}
